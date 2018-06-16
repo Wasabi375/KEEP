@@ -91,6 +91,8 @@ class MyClass {
 
 In above example `items` is `MutableList<Item>` when accessed privately inside class and read-only `List<String>` when accessed from outside class.
 
+In order to represent this in the reflection framework [`KProperty`](http://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html) would also contain a property `backingType` of type `KType` which would contain the type of the backing field. `returnType` would still return the type of the getter as it currently does. 
+
 ## Questions to consider
 
 ### How do Kotlin's multiple layers of visibility come into play? 
@@ -104,7 +106,7 @@ Would it be beneficial and feasible to also support something like this?
         public get(): List<Item>
 ```
 
-In above example `items` would be full `ArrayList<Item>` when accessed from defining class or any subclasses (as defined by `protected` modifier), more general `MutableList<String>` when accessed from inside same module (as defined by `internal` modifier) and read-only `List<String>` when accessed from outside the module.
+In above example `items` would be full `ArrayList<Item>` when accessed from defining class or any subclasses (as defined by `protected` modifier), more general `MutableList<String>` when accessed from inside same module (as defined by `internal` modifier) and read-only `List<String>` when accessed from outside the module. 
 
 ### What about setters?
 
